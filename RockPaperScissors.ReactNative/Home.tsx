@@ -1,25 +1,21 @@
 import React, {useEffect} from 'react';
 import Game from './Game';
 import {useAppSelector} from './hooks';
-import Menu from './Menu';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import Play from './Play';
 
 const Home = ({navigation}: NativeStackScreenProps<{}>) => {
   const game = useAppSelector(state => state.game.id);
 
   useEffect(() => {
     if (game === null) {
-      navigation.setOptions({title: 'Meny'});
+      navigation.setOptions({title: 'Start'});
     } else {
       navigation.setOptions({title: 'Sten Sax Påse'});
     }
   }, [game]);
 
-  return game === null ? (
-    <Menu navigation={navigation} />
-  ) : (
-    <Game navigation={navigation} />
-  );
+  return game === null ? <Play /> : <Game navigation={navigation} />;
 };
 
 export default Home;

@@ -14,7 +14,6 @@ const useSockets = () => {
   const dispatch = useAppDispatch();
 
   const handlePlayerInfo = (data: {playerId: number; name: string}) => {
-    console.log(data);
     dispatch(setUser({id: data.playerId, name: data.name}));
   };
 
@@ -36,6 +35,7 @@ const useSockets = () => {
 
   useEffect(() => {
     if (ws === null) {
+      //TODO: Use .env variable
       setWs(new WebSocket('ws://10.0.2.2:8080'));
     }
   }, [ws]);

@@ -11,7 +11,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import Join from './Join';
+import Play from './Play';
 import Home from './Home';
 
 const Stack = createNativeStackNavigator();
@@ -21,11 +21,6 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen
-          name="Join"
-          component={Join}
-          options={{title: 'Nytt spel'}}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );

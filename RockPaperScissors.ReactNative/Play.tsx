@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Button,
   SafeAreaView,
@@ -10,11 +10,9 @@ import {
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useGameJoin} from './handlers/useGameJoin';
-import {useAppSelector} from './hooks';
 
-const Join = ({navigation}: any) => {
+const Play = () => {
   const [name, onChangeName] = useState<string>();
-  const gameId = useAppSelector(state => state.game.id);
   const isDarkMode = useColorScheme() === 'dark';
   const handler = useGameJoin();
 
@@ -22,13 +20,7 @@ const Join = ({navigation}: any) => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  useEffect(() => {
-    if (gameId !== null) {
-      navigation.navigate('Home');
-    }
-  }, [gameId]);
-
-  const handleJoin = () => {
+  const handlePlay = () => {
     handler.handle(name);
   };
 
@@ -43,7 +35,7 @@ const Join = ({navigation}: any) => {
             padding: 10,
           }}>
           <TextInput
-            placeholder="Namn"
+            placeholder="Fyll i namn"
             style={{
               borderStyle: 'solid',
               borderWidth: 1,
@@ -55,11 +47,11 @@ const Join = ({navigation}: any) => {
             value={name}
           />
 
-          <Button title="Skapa" disabled={!name} onPress={handleJoin} />
+          <Button title="Spela" disabled={!name} onPress={handlePlay} />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default Join;
+export default Play;
